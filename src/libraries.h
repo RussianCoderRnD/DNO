@@ -3,7 +3,7 @@
 
 #include <Arduino.h>          // Основная библиотека для Arduino
 
-#include <Define.h>           // Файл с инструкциями #define
+#include <define.h>           // Файл с инструкциями #define
 #include <variables.h>        // Файл с объявлением переменных
 
 
