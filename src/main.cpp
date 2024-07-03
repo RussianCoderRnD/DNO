@@ -5,8 +5,10 @@
 //----------------- БИБЛИОТЕКИ END-----------------------
 
 
-//-------------------- DEFINE START ---------------------
-//-------------------- DEFINE END -----------------------
+//-------------------- CONST START ---------------------
+const char *ssid = "ESP8266_AP";   // Имя сети (SSID)
+const char *password = "12345678"; // Пароль сети
+//-------------------- CONST END -----------------------
 
 
 //-------------------- CLASS START ----------------------
@@ -14,6 +16,11 @@
 
 
 //------------ СОЗДАНИЕ ЭКЗЕМПЛЯРА START ----------------
+IPAddress local_ip(192, 168, 4, 1); // Локальный IP-адрес
+IPAddress gateway(192, 168, 4, 1);  // Шлюз
+IPAddress subnet(255, 255, 255, 0); // Маска подсети
+
+ESP8266WebServer server(80); // Веб-сервер на ESP8266
 //------------- СОЗДАНИЕ ЭКЗЕМПЛЯРА END -----------------
 
 
@@ -27,7 +34,19 @@
 
 //--------------------- SETUP START ---------------------
 void setup(void) {
+ Serial.begin(MONITOR_SPEED); // открываем порт для связи с ПК
 
+  for (size_t i = 0; i < 8; i++)
+  {
+    pinMode(ArrayLinePin[i], OUTPUT);
+  }
+  for (size_t i = 0; i < 6; i++)
+  {
+    digitalWrite(ArrayLinePin[i], HIGH);
+  }
+
+  digitalWrite(Relay_current_volt, LOW);
+  digitalWrite(WiFi_Status, LOW);
 }
 //--------------------- SETUP END -----------------------
 
